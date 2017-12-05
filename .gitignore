@@ -1,3 +1,7 @@
+# csr
+src/config/csr/saudify.com.csr
+src/config/csr/saudify.com.key
+
 # Logs
 logs
 *.log

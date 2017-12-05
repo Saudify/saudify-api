@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "node ./",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:file": "node_modules/.bin/mocha",
     "lint": "node_modules/.bin/eslint src/*",
@@ -29,5 +30,8 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
   }
 }
