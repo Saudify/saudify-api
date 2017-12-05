@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node ./",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:file": "node_modules/.bin/mocha",
+    "lint": "node_modules/.bin/eslint src/*",
+    "lint:fix": "node_modules/.bin/eslint --fix src/*"
   },
   "repository": {
     "type": "git",
@@ -16,5 +20,18 @@
   "bugs": {
     "url": "https://github.com/Saudify/saudify-api/issues"
   },
-  "homepage": "https://github.com/Saudify/saudify-api#readme"
+  "homepage": "https://github.com/Saudify/saudify-api#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.12.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^4.0.1"
+  },
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
