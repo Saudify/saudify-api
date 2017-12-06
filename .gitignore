@@ -1,6 +1,6 @@
 # csr
-src/config/csr/saudify.com.csr
-src/config/csr/saudify.com.key
+src/config/csr/saudify.crt
+src/config/csr/saudify.key
 
 # Logs
 logs
