@@ -6,22 +6,26 @@
 
 'use strict'
 
-module.exports = {
-  buildSuccess
-}
-
 /**
  * @param {Number} code Http response code.
  * @param {Object} data Response data.
  *
  * @returns {Object}
  */
-function buildSuccess (code = 200, data = {}) {
-  return {
-    code,
-    data,
-    success: true
-  }
-}
+module.exports.buildSuccess = (code = 200, data = {}) => ({
+  code,
+  data,
+  status: 'success'
+})
 
-// TODO: buildError
+/**
+ * @param {Number} code Http response code.
+ * @param {Error} error
+ *
+ * @returns {Object}
+ */
+module.exports.buildError = (code, error) => ({
+  code,
+  message: error.message,
+  status: 'error'
+})

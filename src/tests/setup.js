@@ -9,10 +9,7 @@ process.env.NODE_ENV = 'test'
 
 const chai = require('chai')
 const supertest = require('supertest')
-const app = require('../../')
-
-// TODO: init server only in acceptance tests
-// process.env.npm_lifecycle_event
+const app = require('../config/app')
 
 global.request = supertest(app)
 global.expect = chai.expect
