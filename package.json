@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node ./",
-    "test": "npm run lint:fix && find ./src -name '*.test.js' | xargs node_modules/.bin/mocha --exit --opts src/tests/mocha.opts",
+    "test": "find ./src -name '*.test.js' | xargs node_modules/.bin/mocha --exit --opts src/tests/mocha.opts",
     "test:file": "node_modules/.bin/mocha --exit --opts src/tests/mocha.opts",
     "lint": "node_modules/.bin/eslint src/*",
     "lint:fix": "node_modules/.bin/eslint --fix src/*"
