@@ -1,7 +1,3 @@
-# csr
-src/config/csr/saudify.crt
-src/config/csr/saudify.key
-
 # Logs
 logs
 *.log

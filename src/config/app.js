@@ -17,6 +17,9 @@ const namespace = '/v1'
 
 app.use(namespace, router)
 
+// register application routes
 appRoutes(router)
+
+// TODO: Error and 404 middlewares
 
 module.exports = app
