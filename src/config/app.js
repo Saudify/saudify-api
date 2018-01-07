@@ -10,6 +10,7 @@
 const express = require('express')
 const app = express()
 const router = express.Router()
+const notFoundMiddleware = require('../lib/http/middlewares/not-found')
 
 // application routes
 const appRoutes = require('../lib/http/routes')
@@ -20,6 +21,6 @@ app.use(namespace, router)
 // register application routes
 appRoutes(router)
 
-// TODO: Error and 404 middlewares
+app.use(notFoundMiddleware)
 
 module.exports = app
