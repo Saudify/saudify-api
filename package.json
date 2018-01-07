@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node ./",
-    "test": "find ./src -name '*.test.js' | xargs node_modules/.bin/mocha --exit --opts src/tests/mocha.opts",
-    "test:file": "node_modules/.bin/mocha --exit --opts src/tests/mocha.opts",
-    "lint": "node_modules/.bin/eslint src/*",
-    "lint:fix": "node_modules/.bin/eslint --fix src/*"
+    "start": "node ./",
+    "dev": "nodemon ./",
+    "test": "find ./src -name '*.test.js' | xargs mocha --exit --opts src/tests/mocha.opts",
+    "test:file": "mocha --exit --opts src/tests/mocha.opts",
+    "lint": "eslint src/*",
+    "lint:fix": "eslint --fix src/*"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^4.0.1",
+    "nodemon": "^1.14.8",
     "supertest": "^3.0.0"
   },
   "dependencies": {
