@@ -12,12 +12,23 @@ describe('Integration: database', function () {
 
       it('should connect with mongodb', async function () {
         // TODO: Uri in env
-        await connect('mongodb://localhost/test')
+        await connect('mongodb://localhost')
         expect(mongoose.connection.readyState).to.equal(1)
       })
     })
 
-    // TODO
-    // describe('connect error')
+    describe('connect error', function () {
+      describe('when connection uri not exists', function () {
+        it('should thrown error when driver cannot connect with uri', async function () {
+          try {
+            await connect('mongodb://wrongggggg')
+            expect.fail(0, 1, 'Connection exception is not thrown')
+          } catch (error) {
+            expect(mongoose.connection.readyState).to.equal(0)
+            expect(error.message).to.match(/failed to connect to server/)
+          }
+        })
+      })
+    })
   })
 })

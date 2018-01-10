@@ -1,6 +1,5 @@
 /**
- * Module that initialize and connect
- * with database.
+ * Module that initialize and connect with database.
  *
  * @module database
  */
@@ -11,8 +10,7 @@ const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 
 module.exports = {
-  connect,
-  getConnection
+  connect
 }
 
 /**
@@ -30,9 +28,4 @@ function connect (uri) {
   })
 }
 
-/**
- * Get database connection.
- *
- * @returns {??}
- */
-function getConnection () {}
+// TODO: Expose disconnect function

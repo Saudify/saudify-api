@@ -1,6 +1,5 @@
 /**
- * Module that instaciate and configure
- * application.
+ * Module that instaciate and configure application.
  *
  * @module config/app
  */
@@ -16,11 +15,16 @@ const notFoundMiddleware = require('../lib/http/middlewares/not-found')
 const appRoutes = require('../lib/http/routes')
 const namespace = '/v1'
 
+// TODO: Register (cors, helmet, compression and morgan)
+// middlewares.
+
+// register route namespace
 app.use(namespace, router)
 
 // register application routes
 appRoutes(router)
 
+// Errors middlewares
 app.use(notFoundMiddleware)
 
 module.exports = app
