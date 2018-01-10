@@ -1,6 +1,5 @@
 /**
- * Module that create and starts
- * api server.
+ * Module that create and starts api server.
  *
  * @module config/server
  */
@@ -26,12 +25,11 @@ module.exports = init
  * @param {Object} app Application instance.
  */
 function init (app) {
-  https.createServer(options, app)
-    // TODO: put port in config env file.
-    .listen(3000, async () => {
-      // TODO: put url in config file
-      await connect('mongodb://localhost')
+  const { SERVER_PORT, MONGO_URI } = process.env
 
-      console.log(`Server running`)
+  https.createServer(options, app)
+    .listen(SERVER_PORT, async () => {
+      await connect(MONGO_URI)
+      console.log(`Server running at port: ${SERVER_PORT}`)
     })
 }

@@ -11,8 +11,8 @@ describe('Integration: database', function () {
       })
 
       it('should connect with mongodb', async function () {
-        // TODO: Uri in env
-        await connect('mongodb://localhost')
+        // .env file should be configured with test enviroment
+        await connect(process.env.MONGO_URI)
         expect(mongoose.connection.readyState).to.equal(1)
       })
     })

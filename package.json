@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./",
-    "dev": "nodemon ./",
-    "test": "find ./src -name '*.test.js' | xargs mocha --exit --opts src/tests/mocha.opts",
-    "test:file": "mocha --exit --opts src/tests/mocha.opts",
+    "dev": "npm run setup:dev && NODE_ENV=development nodemon ./",
+    "dev:vagrant": "npm run setup:dev && NODE_ENV=development nodemon -L ./",
+    "test": "npm run setup:test && find ./src -name '*.test.js' | NODE_ENV=test xargs mocha --exit --opts src/tests/mocha.opts",
+    "test:file": "npm run setup:test && NODE_ENV=test mocha --exit --opts src/tests/mocha.opts",
     "lint": "eslint src/*",
-    "lint:fix": "eslint --fix src/*"
+    "lint:fix": "eslint --fix src/*",
+    "setup:dev": "node src/config/setup-env.js --development",
+    "setup:test": "node src/config/setup-env.js --test"
   },
   "repository": {
     "type": "git",
@@ -36,6 +39,7 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "mongoose": "^4.13.9"
   }

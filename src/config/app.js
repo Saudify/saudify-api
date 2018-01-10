@@ -15,16 +15,24 @@ const notFoundMiddleware = require('../lib/http/middlewares/not-found')
 const appRoutes = require('../lib/http/routes')
 const namespace = '/v1'
 
+// load enviroment data only in dev and test enviroments.
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').load()
+}
+
 // TODO: Register (cors, helmet, compression and morgan)
 // middlewares.
 
-// register route namespace
+// register app routes namespace
 app.use(namespace, router)
 
 // register application routes
 appRoutes(router)
 
-// Errors middlewares
+/**
+ * Errors middlewares
+ */
+
 app.use(notFoundMiddleware)
 
 module.exports = app
