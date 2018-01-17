@@ -1,3 +1,4 @@
 --require src/tests/setup.js
 --ui bdd
 --reporter spec
+--timeout 5000
