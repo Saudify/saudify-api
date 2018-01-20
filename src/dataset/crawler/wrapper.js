@@ -31,6 +31,7 @@ function fishUri (uri) {
   return new Promise((resolve, reject) => {
     getInstance().queue({
       uri,
+      retries: 0,
       callback: (err, res, done) => {
         done()
 
