@@ -1,14 +1,14 @@
 'use strict'
 
 const Crawler = require('./')
-const factory = require('./factory')
+const wrapper = require('./wrapper')
 const config = require('../config')
 
 describe('Suit: dataset/crawler', function () {
   let crawler = null
 
   beforeEach(function () {
-    crawler = Crawler(factory.getInstance(), config.baseUrl)
+    crawler = Crawler(wrapper.getInstance(), config.baseUrl)
   })
 
   afterEach(function () {
@@ -46,12 +46,29 @@ describe('Suit: dataset/crawler', function () {
   })
 
   describe('Integration', function () {
-    describe('#getResourcePage', function () {
-      it('should return the url of resource page', async function () {
-        const url = await crawler.getResourcePage('farmacia_popular_brasil')
-        const expected = 'http://dados.gov.br/dataset/farmacia_popular_brasil/resource/c782a842-0c37-45b7-9c6e-0ad0a611575d'
+    // url of resource page to execute testes.
+    const resourceUrl = 'http://dados.gov.br/dataset/farmacia_popular_brasil/resource/c782a842-0c37-45b7-9c6e-0ad0a611575d'
 
-        expect(url).to.equal(expected)
+    // TODO: Tests for crawler request error
+
+    describe('#getResourcePage', function () {
+      describe('when crawler request page with success', function () {
+        it('should return the url of resource page', async function () {
+          const url = await crawler.getResourcePage('farmacia_popular_brasil')
+
+          expect(url).to.equal(resourceUrl)
+        })
+      })
+    })
+
+    describe('#getResourceEndpoint', function () {
+      describe('when crawler request page with success', function () {
+        it('should return the url of the resource\'s endpoint', async function () {
+          const endpointUrl = await crawler.getResourceEndpoint(resourceUrl)
+          const expectedUrl = 'http://i3geo.saude.gov.br/i3geo/ogc.php?service=WFS&version=1.0.0&request=GetFeature&typeName=farmacia_popular_brasil&outputFormat=JSON'
+
+          expect(endpointUrl).to.equal(expectedUrl)
+        })
       })
     })
   })

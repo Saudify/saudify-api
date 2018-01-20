@@ -2,8 +2,7 @@
 
 // node-crawler
 const Crawler = require('crawler')
-// local module
-const { getInstance } = require('./factory')
+const { getInstance } = require('./wrapper')
 
 describe('Unit: dataset/crawler/crawler', function () {
   describe('#getInstance', function () {
@@ -12,4 +11,6 @@ describe('Unit: dataset/crawler/crawler', function () {
       expect(actual).to.be.instanceof(Crawler)
     })
   })
+
+  // TODO: tests for fishUri
 })
