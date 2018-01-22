@@ -9,7 +9,6 @@
 const https = require('https')
 const { join } = require('path')
 const { readFileSync } = require('fs')
-const { connect } = require('../database')
 
 const certPaths = join(__dirname, 'csr')
 const options = {
@@ -25,11 +24,9 @@ module.exports = init
  * @param {Object} app Application instance.
  */
 function init (app) {
-  const { SERVER_PORT, MONGO_URI } = process.env
+  const { SERVER_PORT } = process.env
 
   https.createServer(options, app)
-    .listen(SERVER_PORT, async () => {
-      await connect(MONGO_URI)
-      console.log(`Server running at port: ${SERVER_PORT}`)
-    })
+    .listen(SERVER_PORT, () =>
+      console.log(`Server running at port: ${SERVER_PORT}`))
 }
