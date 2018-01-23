@@ -23,7 +23,7 @@ describe('Unit: resources/feature-collection', function () {
 
   describe('validation', function () {
     describe('when is invalid model', function () {
-      describe('#details', function () {
+      describe('#details.name', function () {
         describe('required', function () {
           it('should be invalid when details.name is not defined', async function () {
             try {
@@ -37,6 +37,68 @@ describe('Unit: resources/feature-collection', function () {
               expect.fail(null, null, 'Not throw required error')
             } catch (error) {
               expect(error.errors['details.name'].message).to.equal('Path `details.name` is required.')
+            }
+          })
+        })
+      })
+
+      describe('#geometry.coordinates', function () {
+        describe('invalid value', function () {
+          it('should be invalid when geometry.coordinates is not valid coordinates', async function () {
+            const lat = 91
+            const lng = -181
+
+            try {
+              await setup({
+                details: {
+                  name: 'Foo'
+                },
+                geometry: {
+                  type: 'Point',
+                  coordinates: [lng, lat]
+                }
+              }).validate()
+
+              expect.fail(null, null, 'Not throw invalid coordinates value error')
+            } catch (error) {
+              expect(error.errors['geometry.coordinates'].message).to.equal(`Invalid coordinates: ${lng},${lat}.`)
+            }
+          })
+
+          it('should be invalid when geometry.coordinates is not a number', async function () {
+            try {
+              await setup({
+                details: {
+                  name: 'Foo'
+                },
+                geometry: {
+                  coordinates: ['foo', 'bar']
+                }
+              }).validate()
+
+              expect.fail(null, null, 'Not throw invalid coordinates')
+            } catch (error) {
+              expect(error.errors['geometry.coordinates'].message).to.equal('Cast to Array failed for value "[ \'foo\', \'bar\' ]" at path "geometry.coordinates"')
+            }
+          })
+        })
+
+        describe('required', function () {
+          it('should be invalid when geometry.coordinates is not defined', async function () {
+            try {
+              await setup({
+                details: {
+                  name: 'Foo'
+                },
+                geometry: {
+                  type: 'Point',
+                  coordinates: []
+                }
+              }).validate()
+
+              expect.fail(null, null, 'Not throw required error')
+            } catch (error) {
+              expect(error.errors['geometry.coordinates'].message).to.equal('Path `geometry.coordinates` is required.')
             }
           })
         })

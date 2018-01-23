@@ -1,5 +1,7 @@
 'use strict'
 
+const { isValidCoords } = require('../../lib/geolocation/coordinates')
+
 module.exports = db => {
   const featureCollection = new db.Schema({
     details: {
@@ -17,7 +19,11 @@ module.exports = db => {
       coordinates: {
         type: [Number],
         index: '2dsphere',
-        required: true
+        required: true,
+        validate: {
+          validator: isValidCoords,
+          message: 'Invalid coordinates: {VALUE}.'
+        }
       }
     },
     importedAt: {
