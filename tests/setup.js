@@ -7,7 +7,7 @@
 
 const chai = require('chai')
 const supertest = require('supertest')
-const app = require('../config/app')
+const app = require('../src/config/app')
 
 global.request = supertest(app)
 global.expect = chai.expect

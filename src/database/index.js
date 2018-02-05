@@ -22,7 +22,6 @@ module.exports = {
  */
 async function connect (uri) {
   await mongoose.connect(uri, {
-    useMongoClient: true,
     // If not connected, return errors immediately rather than waiting for reconnect
     bufferMaxEntries: 0
   })
