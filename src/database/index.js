@@ -20,13 +20,11 @@ module.exports = {
  * @param {Strong} uri Connection uri.
  * @returns {Promise<Mongoose>}
  */
-async function connect (uri) {
-  await mongoose.connect(uri, {
+function connect (uri) {
+  return mongoose.connect(uri, {
     // If not connected, return errors immediately rather than waiting for reconnect
     bufferMaxEntries: 0
   })
-
-  return mongoose
 }
 
 // TODO: Expose disconnect function
