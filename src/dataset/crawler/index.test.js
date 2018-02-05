@@ -46,17 +46,14 @@ describe('Suit: dataset/crawler', function () {
   })
 
   describe('Integration', function () {
-    // url of resource page to execute testes.
-    const resourceUrl = 'http://dados.gov.br/dataset/farmacia_popular_brasil/resource/c782a842-0c37-45b7-9c6e-0ad0a611575d'
-
     // TODO: Tests for crawler request error
 
     describe('#getResourcePage', function () {
       describe('when crawler request page with success', function () {
         it('should return the url of resource page', async function () {
-          const url = await crawler.getResourcePage('farmacia_popular_brasil')
-
-          expect(url).to.equal(resourceUrl)
+          const resourcePageRegex = new RegExp('dados.gov.br/dataset/farmacia_popular_brasil/resource')
+          const actual = await crawler.getResourcePage('farmacia_popular_brasil')
+          expect(actual).to.match(resourcePageRegex)
         })
       })
     })
@@ -64,10 +61,11 @@ describe('Suit: dataset/crawler', function () {
     describe('#getResourceEndpoint', function () {
       describe('when crawler request page with success', function () {
         it('should return the url of the resource\'s endpoint', async function () {
+          const resourceUrl = await crawler.getResourcePage('farmacia_popular_brasil')
           const endpointUrl = await crawler.getResourceEndpoint(resourceUrl)
-          const expectedUrl = 'http://i3geo.saude.gov.br/i3geo/ogc.php?service=WFS&version=1.0.0&request=GetFeature&typeName=farmacia_popular_brasil&outputFormat=JSON'
+          const endpointRegex = new RegExp('request=GetFeature&typeName=farmacia_popular_brasil&outputFormat=JSON')
 
-          expect(endpointUrl).to.equal(expectedUrl)
+          expect(endpointUrl).to.match(endpointRegex)
         })
       })
     })
