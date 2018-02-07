@@ -20,7 +20,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load()
 }
 
-// TODO: Register (cors, helmet, compression and morgan)
+// TODO: Register (logs, cors, helmet, compression and morgan)
 // middlewares.
 
 // register app routes namespace

@@ -10,10 +10,11 @@ const https = require('https')
 const { join } = require('path')
 const { readFileSync } = require('fs')
 
-const certPaths = join(__dirname, 'csr')
+const { CSR_PATH } = require('./constants')
+
 const options = {
-  key: readFileSync(join(certPaths, 'saudify.key')),
-  cert: readFileSync(join(certPaths, 'saudify.crt'))
+  key: readFileSync(join(CSR_PATH, 'saudify.key')),
+  cert: readFileSync(join(CSR_PATH, 'saudify.crt'))
 }
 
 module.exports = init
