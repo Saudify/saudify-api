@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * Script that rapidly setup .env data to dev and test enviroments.
  */
@@ -28,7 +30,7 @@ const configs = {
 }
 
 const envData = configs[envName]
-const basePath = path.join(__dirname, '..', '..')
+const basePath = path.join(__dirname, '..')
 const samplePath = path.join(basePath, '.env-sample')
 const outEnvPath = path.join(basePath, '.env')
 

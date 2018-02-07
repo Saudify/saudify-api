@@ -11,8 +11,8 @@
     "test:file": "npm run setup:test && NODE_ENV=test mocha --exit --opts tests/mocha.opts",
     "lint": "eslint src/*",
     "lint:fix": "eslint --fix src/*",
-    "setup:dev": "node src/config/setup-env.js --development",
-    "setup:test": "node src/config/setup-env.js --test"
+    "setup:dev": "saudify-env --development",
+    "setup:test": "saudify-env --test"
   },
   "repository": {
     "type": "git",
@@ -43,5 +43,8 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "mongoose": "^5.0.3"
+  },
+  "bin": {
+    "saudify-env": "./bin/setup-env.js"
   }
 }
