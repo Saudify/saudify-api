@@ -13,6 +13,8 @@ module.exports = {
   connect
 }
 
+// TODO: Create pool connection function
+
 /**
  * Connect with mongodb.
  *
