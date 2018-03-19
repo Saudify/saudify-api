@@ -9,6 +9,7 @@ module.exports = {
   },
   "globals": {
     "request": true,
-    "expect": true
+    "expect": true,
+    "sinon": true
   }
 };

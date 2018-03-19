@@ -5,8 +5,7 @@
 'use strict'
 
 const app = require('./config/app')
-const server = require('./config/server')
+const server = require('./config/server')(app)
+const bootstrap = require('./config/bootstrap')
 
-server(app)
-
-module.exports = app
+bootstrap(server)

@@ -1,9 +1,3 @@
-/**
- * Module that instaciate and configure application.
- *
- * @module config/app
- */
-
 'use strict'
 
 const express = require('express')
@@ -23,10 +17,11 @@ if (process.env.NODE_ENV !== 'production') {
 // TODO: Register (logs, cors, helmet, compression and morgan)
 // middlewares.
 
-// register app routes namespace
-app.use(namespace, router)
+/**
+ * Routes
+ */
 
-// register application routes
+app.use(namespace, router)
 appRoutes(router)
 
 /**
