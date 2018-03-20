@@ -1,7 +1,3 @@
-/**
- * @module lib/http/middlewares/not-found
- */
-
 'use strict'
 
 const { buildError } = require('../responser')

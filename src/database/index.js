@@ -1,17 +1,8 @@
-/**
- * Module that initialize and connect with database.
- *
- * @module database
- */
+'use strict'
 
 const mongoose = require('mongoose')
 
-// config mongoose promise
 mongoose.Promise = global.Promise
-
-module.exports = {
-  connect
-}
 
 // TODO: Create pool connection function
 
@@ -30,3 +21,7 @@ function connect (uri) {
 }
 
 // TODO: Expose disconnect function
+
+module.exports = {
+  connect
+}

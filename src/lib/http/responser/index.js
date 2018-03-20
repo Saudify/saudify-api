@@ -1,9 +1,3 @@
-/**
- * Construct responses.
- *
- * @module lib/http/responser
- */
-
 'use strict'
 
 /**
@@ -12,11 +6,13 @@
  *
  * @returns {Object}
  */
-module.exports.buildSuccess = (code = 200, data = {}) => ({
-  code,
-  data,
-  status: 'success'
-})
+function buildSuccess (code = 200, data = {}) {
+  return {
+    code,
+    data,
+    status: 'success'
+  }
+}
 
 /**
  * @param {Number} code Http response code.
@@ -24,8 +20,15 @@ module.exports.buildSuccess = (code = 200, data = {}) => ({
  *
  * @returns {Object}
  */
-module.exports.buildError = (code, error) => ({
-  code,
-  message: error.message,
-  status: 'error'
-})
+function buildError (code, error) {
+  return {
+    code,
+    message: error.message,
+    status: 'error'
+  }
+}
+
+module.exports = {
+  buildSuccess,
+  buildError
+}

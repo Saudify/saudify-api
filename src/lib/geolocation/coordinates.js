@@ -1,9 +1,5 @@
 'use strict'
 
-module.exports = {
-  isValidCoords
-}
-
 /**
  * Verify if latitude and longitude are valid.
  *
@@ -16,4 +12,8 @@ function isValidCoords (coords) {
 
   return (lng >= -180 && lng <= 180) &&
     (lat >= -90 && lat <= 90)
+}
+
+module.exports = {
+  isValidCoords
 }
