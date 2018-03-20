@@ -34,13 +34,19 @@ const basePath = path.join(__dirname, '..')
 const samplePath = path.join(basePath, '.env-sample')
 const outEnvPath = path.join(basePath, '.env')
 
-// read and create file
 const charTemplate = '%'
 
-const data = fs.readFileSync(samplePath, 'utf8')
-let lastReplaced = data
-for (let key in envData) {
-  lastReplaced = lastReplaced.replace(`${charTemplate}${key}${charTemplate}`, envData[key])
-}
+fs.readFile(samplePath, 'utf8', (err, data) => {
+  let lastReplaced = data
+  for (let key in envData) {
+    lastReplaced = lastReplaced.replace(`${charTemplate}${key}${charTemplate}`, envData[key])
+  }
+  
+  fs.writeFile(outEnvPath, lastReplaced, err => {
+    if (err) {
+      throw err
+    }
+    process.stdout.write('.env created!\n')
+  })
+})
 
-fs.writeFileSync(outEnvPath, lastReplaced)
