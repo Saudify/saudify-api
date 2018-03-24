@@ -20,12 +20,14 @@ const envName = envArg.slice(2)
 const configs = {
   test: {
     SERVER_PORT: 3000,
-    MONGO_URI: 'mongodb://localhost/saudify_test'
+    MONGO_URI: 'mongodb://localhost/saudify_test',
+    NODE_ENV: 'test'
   },
 
   development: {
     SERVER_PORT: 3000,
-    MONGO_URI: 'mongodb://localhost/saudify_dev'
+    MONGO_URI: 'mongodb://localhost/saudify_dev',
+    NODE_ENV: 'development'
   }
 }
 
