@@ -14,8 +14,17 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load()
 }
 
-// TODO: Register (logs, cors, helmet, compression and morgan)
-// middlewares.
+/**
+ * Middlewares
+ */
+
+app.use(require('cors')())
+app.use(require('dns-prefetch-control')())
+app.use(require('frameguard')())
+app.use(require('hide-powered-by')())
+app.use(require('hsts')())
+app.use(require('ienoopen')())
+app.use(require('x-xss-protection')())
 
 /**
  * Routes

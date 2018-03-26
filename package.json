@@ -41,9 +41,16 @@
     "supertest": "^3.0.0"
   },
   "dependencies": {
+    "cors": "^2.8.4",
+    "dns-prefetch-control": "^0.1.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "mongoose": "^5.0.3"
+    "frameguard": "^3.0.0",
+    "hide-powered-by": "^1.0.0",
+    "hsts": "^2.1.0",
+    "ienoopen": "^1.0.0",
+    "mongoose": "^5.0.3",
+    "x-xss-protection": "^1.1.0"
   },
   "bin": {
     "saudify-env": "./bin/setup-env.js"
