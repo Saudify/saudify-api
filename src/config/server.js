@@ -12,11 +12,11 @@ const options = {
 
 /**
  * Starts application server.
- * @param {Object} app Application instance.
+ * @param {Object} app Server request handler.
  * @returns {Server}
  */
-function server (app) {
+function create (app) {
   return https.createServer(options, app)
 }
 
-module.exports = server
+module.exports = { create }

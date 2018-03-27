@@ -4,7 +4,7 @@ const https = require('https')
 const serverModule = require('./server')
 
 describe('Unit: config/server', function () {
-  describe('default export', function () {
+  describe('#create', function () {
     let server
 
     after(function (done) {
@@ -13,7 +13,7 @@ describe('Unit: config/server', function () {
 
     it('should return Server instance', function () {
       const app = () => {}
-      server = serverModule(app)
+      server = serverModule.create(app)
       expect(server).to.be.instanceOf(https.Server)
     })
   })
