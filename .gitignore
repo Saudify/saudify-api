@@ -59,4 +59,5 @@ typings/
 .env
 
 # ssl
-csr/*.key
+certs/saudify.cert
+certs/saudify.key
