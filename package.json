@@ -12,7 +12,8 @@
     "lint": "eslint src/*",
     "lint:fix": "eslint --fix src/*",
     "setup:dev": "saudify-env --development",
-    "setup:test": "saudify-env --test"
+    "setup:test": "saudify-env --test",
+    "ssl": "./scripts/generate.sh"
   },
   "repository": {
     "type": "git",
