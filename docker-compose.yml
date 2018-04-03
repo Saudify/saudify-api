@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  saudify-api:
+    build: .
+    command: npm start
+    volumes:
+      - .:/usr/src/saudify
+      - /usr/src/saudify/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URI: mongodb://mongo/saudify
+      SERVER_PORT: 3000
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - /data/db

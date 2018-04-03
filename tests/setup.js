@@ -5,8 +5,6 @@
 
 'use strict'
 
-require('dotenv').load()
-
 const sinon = require('sinon')
 const sinonChai = require('sinon-chai')
 const chai = require('chai')

@@ -4,15 +4,13 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "node ./",
-    "dev": "npm run setup:dev && nodemon",
-    "dev:vagrant": "npm run setup:dev && nodemon -L",
-    "test": "npm run setup:test && find ./src -name '*.test.js' | xargs mocha --exit --opts tests/mocha.opts",
-    "test:file": "npm run setup:test && mocha --exit --opts tests/mocha.opts",
+    "start": "node src/index.js",
+    "dev": "nodemon",
+    "dev:vagrant": "nodemon -L",
+    "test": "find ./src -name '*.test.js' | xargs mocha --exit --opts tests/mocha.opts",
+    "test:file": "mocha --exit --opts tests/mocha.opts",
     "lint": "eslint src/*",
     "lint:fix": "eslint --fix src/*",
-    "setup:dev": "saudify-env --development",
-    "setup:test": "saudify-env --test",
     "ssl": "./scripts/generate.sh"
   },
   "repository": {
@@ -44,7 +42,6 @@
   "dependencies": {
     "cors": "^2.8.4",
     "dns-prefetch-control": "^0.1.0",
-    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "frameguard": "^3.0.0",
     "hide-powered-by": "^1.0.0",
@@ -52,8 +49,5 @@
     "ienoopen": "^1.0.0",
     "mongoose": "^5.0.3",
     "x-xss-protection": "^1.1.0"
-  },
-  "bin": {
-    "saudify-env": "./bin/setup-env.js"
   }
 }

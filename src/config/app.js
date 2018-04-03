@@ -9,11 +9,6 @@ const notFoundMiddleware = require('../lib/http/middlewares/not-found')
 const appRoutes = require('../lib/http/routes')
 const namespace = '/v1'
 
-// load enviroment data only in dev and test enviroments.
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').load()
-}
-
 /**
  * Middlewares
  */
