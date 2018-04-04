@@ -7,7 +7,7 @@
     "start": "node src/index.js",
     "dev": "nodemon",
     "dev:vagrant": "nodemon -L",
-    "test": "find ./src -name '*.test.js' | xargs mocha --exit --opts tests/mocha.opts",
+    "test": "npm run ssl && npm run lint && find ./src -name '*.test.js' | xargs mocha --exit --opts tests/mocha.opts",
     "test:file": "mocha --exit --opts tests/mocha.opts",
     "lint": "eslint src/*",
     "lint:fix": "eslint --fix src/*",

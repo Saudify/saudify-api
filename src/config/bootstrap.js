@@ -5,8 +5,9 @@
  * @param {Server} server
  */
 function bootstrap (server) {
-  const { SERVER_PORT } = process.env
-  server.listen(SERVER_PORT)
+  server.listen(process.env.SERVER_PORT, () =>
+    console.log('saudify-api running')
+  )
 }
 
 module.exports = bootstrap
