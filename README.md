@@ -1,4 +1,4 @@
-# saudify-api
+# saudify-api (work in progress)
 
 [![Build Status](https://travis-ci.org/Saudify/saudify-api.svg?branch=master)](https://travis-ci.org/Saudify/saudify-api)
 
