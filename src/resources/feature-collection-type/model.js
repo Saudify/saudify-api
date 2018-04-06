@@ -2,7 +2,7 @@
 
 module.exports = db => {
   const featureCollectionType = new db.Schema({
-    type: {
+    name: {
       type: String,
       required: true
     }

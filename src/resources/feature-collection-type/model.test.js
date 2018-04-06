@@ -12,9 +12,8 @@ describe('Unit: resources/feature-collection-type', function () {
     FeatureCollectionType = Model(database)
   })
 
-  after(function () {
-    // TODO: Disconnect
-    database = null
+  after(async function () {
+    await database.disconnect()
   })
 
   function setup (data) {
@@ -23,14 +22,14 @@ describe('Unit: resources/feature-collection-type', function () {
 
   describe('validation', function () {
     describe('when is invalid model', function () {
-      describe('#type', function () {
+      describe('#name', function () {
         describe('required', function () {
-          it('should be invalid when type is not defined', async function () {
+          it('should be invalid when name is not defined', async function () {
             try {
               await setup({}).validate()
               expect.fail(null, null, 'Not throw required error')
             } catch (error) {
-              expect(error.errors['type'].message).to.equal('Path `type` is required.')
+              expect(error.errors['name'].message).to.equal('Path `name` is required.')
             }
           })
         })
@@ -39,7 +38,7 @@ describe('Unit: resources/feature-collection-type', function () {
 
     describe('when is valid model', function () {
       it('should create a valid instance', async function () {
-        const error = await setup({ type: 'UPA' }).validate()
+        const error = await setup({ name: 'UPA' }).validate()
         expect(error).to.be.undefined
       })
     })

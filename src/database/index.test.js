@@ -8,7 +8,7 @@ describe('Integration: database', function () {
 
     afterEach(async function () {
       if (conn) {
-        conn.disconnect()
+        await conn.disconnect()
       }
 
       conn = null

@@ -4,11 +4,10 @@ const { isValidCoords } = require('../../lib/geolocation/coordinates')
 
 module.exports = db => {
   const featureCollection = new db.Schema({
-    details: {
-      name: {
-        type: String,
-        required: true
-      }
+    type: {
+      type: db.Schema.Types.ObjectId,
+      ref: 'FeatureCollectionType',
+      required: true
     },
     geometry: {
       type: {
