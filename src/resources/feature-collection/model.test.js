@@ -29,7 +29,7 @@ describe('Unit: resources/feature-collection', function () {
   })
 
   const setup = data => new FeatureCollection(data)
-  const setupType = () => new FeatureCollectionType({ type: 'Foo' })
+  const setupType = () => new FeatureCollectionType({ name: 'Foo' })
 
   describe('validation', function () {
     describe('when is invalid model', function () {
