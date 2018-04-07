@@ -1,12 +1,12 @@
 'use strict'
 
-module.exports = db => {
-  const featureCollectionType = new db.Schema({
-    name: {
-      type: String,
-      required: true
-    }
-  })
+const mongoose = require('mongoose')
 
-  return db.model('FeatureCollectionType', featureCollectionType)
-}
+const featureCollectionType = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  }
+})
+
+module.exports = mongoose.model('FeatureCollectionType', featureCollectionType)

@@ -1,35 +1,34 @@
 'use strict'
 
+const mongoose = require('mongoose')
 const { isValidCoords } = require('../../lib/geolocation/coordinates')
 
-module.exports = db => {
-  const featureCollection = new db.Schema({
+const featureCollection = new mongoose.Schema({
+  type: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'FeatureCollectionType',
+    required: true
+  },
+  geometry: {
     type: {
-      type: db.Schema.Types.ObjectId,
-      ref: 'FeatureCollectionType',
-      required: true
+      type: String,
+      required: true,
+      default: 'Point'
     },
-    geometry: {
-      type: {
-        type: String,
-        required: true,
-        default: 'Point'
-      },
-      coordinates: {
-        type: [Number],
-        index: '2dsphere',
-        required: true,
-        validate: {
-          validator: isValidCoords,
-          message: 'Invalid coordinates: {VALUE}.'
-        }
+    coordinates: {
+      type: [Number],
+      index: '2dsphere',
+      required: true,
+      validate: {
+        validator: isValidCoords,
+        message: 'Invalid coordinates: {VALUE}.'
       }
-    },
-    importedAt: {
-      type: Date,
-      default: Date.now
     }
-  })
+  },
+  importedAt: {
+    type: Date,
+    default: Date.now
+  }
+})
 
-  return db.model('FeatureCollection', featureCollection)
-}
+module.exports = mongoose.model('FeatureCollection', featureCollection)

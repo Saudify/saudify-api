@@ -1,35 +1,22 @@
 'use strict'
 
 const { connect } = require('../../database')
-const Model = require('./model')
-const ModelType = require('../feature-collection-type/model')
+const FeatureCollection = require('./model')
+const FeatureCollectionType = require('../feature-collection-type/model')
+
+const setup = data => new FeatureCollection(data)
+const setupType = () => new FeatureCollectionType({ name: 'Foo' })
 
 describe('Unit: resources/feature-collection', function () {
   let database
-  let FeatureCollection
-  let FeatureCollectionType
 
   before(async function () {
     database = await connect(process.env.MONGO_URI)
-
-    // TODO: Refactor mongoose connection
-    // and model definitions!!
-    // try load FeatureCollectionType to avoid compiled
-    // once error.
-    let typeModel
-    try {
-      typeModel = database.model('FeatureCollectionType')
-    } catch (e) {}
-    FeatureCollection = Model(database)
-    FeatureCollectionType = typeModel || ModelType(database)
   })
 
   after(async function () {
     await database.disconnect()
   })
-
-  const setup = data => new FeatureCollection(data)
-  const setupType = () => new FeatureCollectionType({ name: 'Foo' })
 
   describe('validation', function () {
     describe('when is invalid model', function () {

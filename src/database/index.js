@@ -4,8 +4,6 @@ const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
 
-// TODO: Create pool connection function
-
 /**
  * Connect with mongodb.
  *
@@ -19,8 +17,6 @@ function connect (uri) {
     bufferMaxEntries: 0
   })
 }
-
-// TODO: Expose disconnect function
 
 module.exports = {
   connect

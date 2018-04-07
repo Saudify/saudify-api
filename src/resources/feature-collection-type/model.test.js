@@ -1,24 +1,21 @@
 'use strict'
 
 const { connect } = require('../../database')
-const Model = require('./model')
+const FeatureCollectionType = require('./model')
+
+const setup = data =>
+  new FeatureCollectionType(data)
 
 describe('Unit: resources/feature-collection-type', function () {
   let database = null
-  let FeatureCollectionType = null
 
   before(async function () {
     database = await connect(process.env.MONGO_URI)
-    FeatureCollectionType = Model(database)
   })
 
   after(async function () {
     await database.disconnect()
   })
-
-  function setup (data) {
-    return new FeatureCollectionType(data)
-  }
 
   describe('validation', function () {
     describe('when is invalid model', function () {
