@@ -5,6 +5,7 @@ const { resolve } = require('path')
 const { readFileSync } = require('fs')
 const { CERTS_PATH } = require('./constants')
 
+// TODO: Refactor to use https://www.npmjs.com/package/pem
 const options = {
   key: readFileSync(resolve(CERTS_PATH, 'saudify.key')),
   cert: readFileSync(resolve(CERTS_PATH, 'saudify.cert'))

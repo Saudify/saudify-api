@@ -5,13 +5,13 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon",
-    "dev:vagrant": "nodemon -L",
+    "dev": "npm run import:dev && nodemon src/index.js",
     "test": "npm run ssl && npm run lint && find ./src -name '*.test.js' | xargs mocha --exit --opts tests/mocha.opts",
     "test:file": "mocha --exit --opts tests/mocha.opts",
     "lint": "eslint src/*",
     "lint:fix": "eslint --fix src/*",
-    "ssl": "./scripts/generate.sh"
+    "ssl": "./scripts/generate.sh",
+    "import:dev": "node ./scripts/setup-dev.js"
   },
   "repository": {
     "type": "git",

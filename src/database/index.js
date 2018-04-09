@@ -6,8 +6,6 @@ mongoose.Promise = global.Promise
 
 /**
  * Connect with mongodb.
- *
- * @async
  * @param {Strong} uri Connection uri.
  * @returns {Promise<Mongoose>}
  */
