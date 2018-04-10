@@ -5,6 +5,7 @@
  * @param {Server} server
  */
 function bootstrap (server) {
+  // TODO: Connect database after listen
   server.listen(process.env.SERVER_PORT, () =>
     console.log('saudify-api running')
   )
