@@ -1,7 +1,5 @@
 'use strict'
 
-'use strict'
-
 const { buildSuccess, buildError } = require('../../lib/http/responser')
 const FeatureCollectionType = require('./model')
 
