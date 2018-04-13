@@ -1,8 +1,8 @@
 'use strict'
 
-const url = '/v1/feature-collection-type'
 const { connect } = require('../../database')
 const FeatureCollectionType = require('../feature-collection-type/model')
+const url = '/v1/feature-collection-types'
 
 describe('Acceptance: feature-collection-type', function () {
   let conn
@@ -15,7 +15,7 @@ describe('Acceptance: feature-collection-type', function () {
     await conn.disconnect()
   })
 
-  describe('GET /feature-collection-type', function () {
+  describe('GET /feature-collection-types', function () {
     describe('status 500', function () {
       const errMsg = 'foo'
       const err = new Error(errMsg)

@@ -4,7 +4,7 @@ const { buildSuccess, buildError } = require('../../lib/http/responser')
 const FeatureCollectionType = require('./model')
 
 module.exports = router => {
-  router.get('/feature-collection-type', async (req, res) => {
+  router.get('/feature-collection-types', async (req, res) => {
     let json
 
     try {

@@ -3,7 +3,7 @@
 const { connect } = require('../../database')
 const FeatureCollection = require('./model')
 const FeatureCollectionType = require('../feature-collection-type/model')
-const url = '/v1/feature-collection'
+const url = '/v1/feature-collections'
 
 const clear = async () => {
   await FeatureCollection.remove({})
@@ -24,7 +24,7 @@ const createSingle = async () => {
 
 // TODO: Tests to all scenarios
 describe('Acceptance: feature-collection', function () {
-  describe('GET /feature-collection', function () {
+  describe('GET /feature-collections', function () {
     let db
 
     before(async function () {
