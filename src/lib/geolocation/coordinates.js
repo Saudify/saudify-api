@@ -2,8 +2,9 @@
 
 /**
  * Verify if latitude and longitude are valid.
- *
- * @param {Number[]} coords
+ * @param {Number[]} coords Coordinates.
+ * @param {Number} coords[0] Longitude.
+ * @param {Number} coords[1] Latitude.
  * @returns {Boolean}
  */
 function isValidCoords (coords) {
