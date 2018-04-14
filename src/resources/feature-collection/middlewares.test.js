@@ -32,6 +32,7 @@ describe('Unit: resources/feature-collection/middlewares', function () {
         const body = JSON.parse(res._getData())
         expect(body.message).to.equal('Invalid coordinates')
         expect(res.statusCode).to.equal(400)
+        expect(res._isEndCalled()).to.be.true
         expect(next.called).to.be.false
       })
 
@@ -43,6 +44,7 @@ describe('Unit: resources/feature-collection/middlewares', function () {
         const body = JSON.parse(res._getData())
         expect(body.message).to.equal('Invalid coordinates')
         expect(res.statusCode).to.equal(400)
+        expect(res._isEndCalled()).to.be.true
         expect(next.called).to.be.false
       })
 
@@ -54,6 +56,7 @@ describe('Unit: resources/feature-collection/middlewares', function () {
         const body = JSON.parse(res._getData())
         expect(body.message).to.equal('Invalid coordinates')
         expect(res.statusCode).to.equal(400)
+        expect(res._isEndCalled()).to.be.true
         expect(next.called).to.be.false
       })
 
@@ -65,6 +68,7 @@ describe('Unit: resources/feature-collection/middlewares', function () {
         const body = JSON.parse(res._getData())
         expect(body.message).to.equal('Invalid coordinates')
         expect(res.statusCode).to.equal(400)
+        expect(res._isEndCalled()).to.be.true
         expect(next.called).to.be.false
       })
     })

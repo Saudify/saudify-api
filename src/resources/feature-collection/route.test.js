@@ -22,40 +22,81 @@ const createSingle = async () => {
   return collection
 }
 
+const validLat = -9.6460599
+const validLng = -35.726711
+
 // TODO: Tests to all scenarios
 describe('Acceptance: feature-collection', function () {
   describe('GET /feature-collections', function () {
-    let db
-
-    before(async function () {
-      db = await connect(process.env.MONGO_URI)
-    })
-
-    after(async function () {
-      await db.disconnect()
-    })
-
     describe('status 200', function () {
+      let db
       let created
 
       before(async function () {
+        db = await connect(process.env.MONGO_URI)
         await clear()
         created = await createSingle()
       })
 
       after(async function () {
         await clear()
+        await db.disconnect()
       })
 
       it('should return json with feature collections', async function () {
         const response = await request
           .get(url)
+          .query({ lat: validLat, lng: validLng })
           .expect(200)
           .expect('Content-Type', /json/)
 
         const { data } = response.body
         expect(data).to.be.an('array').that.have.lengthOf(1)
         expect(data[0]._id).to.equal(created.get('id'))
+      })
+    })
+
+    describe('status 400', function () {
+      describe('coordinates querystring', function () {
+        it('should return json with status 400 when lat is not defined', async function () {
+          const response = await request
+            .get(url)
+            .query({ lng: validLng })
+            .expect(400)
+            .expect('Content-Type', /json/)
+
+          expect(response.body.message).to.equal('Invalid coordinates')
+        })
+
+        it('should return json with status 400 when lng is not defined', async function () {
+          const response = await request
+            .get(url)
+            .query({ lat: validLat })
+            .expect(400)
+            .expect('Content-Type', /json/)
+
+          expect(response.body.message).to.equal('Invalid coordinates')
+        })
+
+        it('should return json with status 400 when lat is invalid', async function () {
+          const response = await request
+            .get(url)
+            .query({ lat: 91, lng: validLng })
+            .expect(400)
+            .expect('Content-Type', /json/)
+
+          expect(response.body.message).to.equal('Invalid coordinates')
+        })
+
+        it('should return json with status 400 when lng is invalid', async function () {
+          const response = await request
+            .get(url)
+            .query({ lat: validLng, lng: 181 })
+            .expect(400)
+            .expect('Content-Type', /json/)
+
+          expect(response.body.message).to.equal('Invalid coordinates')
+        })
       })
     })
   })
