@@ -34,6 +34,39 @@ describe('Unit: resources/feature-collection/middlewares', function () {
         expect(res.statusCode).to.equal(400)
         expect(next.called).to.be.false
       })
+
+      it('should be invalid when lng is not defined', function () {
+        const req = getRequest({ lat: validLat })
+        const res = getResponse()
+        const next = sinon.spy()
+        validateCoords(req, res, next)
+        const body = JSON.parse(res._getData())
+        expect(body.message).to.equal('Invalid coordinates')
+        expect(res.statusCode).to.equal(400)
+        expect(next.called).to.be.false
+      })
+
+      it('should be invalid when lat is not valid', function () {
+        const req = getRequest({ lat: 91, lng: validLng })
+        const res = getResponse()
+        const next = sinon.spy()
+        validateCoords(req, res, next)
+        const body = JSON.parse(res._getData())
+        expect(body.message).to.equal('Invalid coordinates')
+        expect(res.statusCode).to.equal(400)
+        expect(next.called).to.be.false
+      })
+
+      it('should be invalid when lng is not valid', function () {
+        const req = getRequest({ lat: validLat, lng: 181 })
+        const res = getResponse()
+        const next = sinon.spy()
+        validateCoords(req, res, next)
+        const body = JSON.parse(res._getData())
+        expect(body.message).to.equal('Invalid coordinates')
+        expect(res.statusCode).to.equal(400)
+        expect(next.called).to.be.false
+      })
     })
   })
 })

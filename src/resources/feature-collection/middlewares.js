@@ -3,6 +3,12 @@
 const { isValidCoords } = require('../../lib/geolocation/coordinates')
 const { buildError } = require('../../lib/http/responser')
 
+/**
+ * Verify if coordinates querystrings are valid.
+ * @param {IncomingMessage} req
+ * @param {ServerResponse} res
+ * @param {Function} next
+ */
 function validateCoords (req, res, next) {
   const { lng, lat } = req.query
   if (!isValidCoords([ lng, lat ])) {
