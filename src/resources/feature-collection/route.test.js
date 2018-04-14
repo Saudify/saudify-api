@@ -25,7 +25,6 @@ const createSingle = async () => {
 const validLat = -9.6460599
 const validLng = -35.726711
 
-// TODO: Tests to all scenarios
 describe('Acceptance: feature-collection', function () {
   describe('GET /feature-collections', function () {
     describe('status 200', function () {
@@ -53,6 +52,33 @@ describe('Acceptance: feature-collection', function () {
         const { data } = response.body
         expect(data).to.be.an('array').that.have.lengthOf(1)
         expect(data[0]._id).to.equal(created.get('id'))
+      })
+    })
+
+    describe('status 500', function () {
+      const errMsg = 'foo'
+      const err = new Error(errMsg)
+      let stub
+
+      before(function () {
+        const p = Promise.reject(err)
+        p.catch(() => {})
+        stub = sinon.stub(FeatureCollection, 'find')
+        stub.returns(p)
+      })
+
+      after(function () {
+        stub.restore()
+      })
+
+      it('should return json with 500 error', async function () {
+        const response = await request
+          .get(url)
+          .query({ lat: validLat, lng: validLng })
+          .expect(500)
+          .expect('Content-Type', /json/)
+
+        expect(response.body.message).to.equal(errMsg)
       })
     })
 
