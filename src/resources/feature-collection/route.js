@@ -6,10 +6,18 @@ const FeatureCollection = require('./model')
 
 module.exports = router => {
   router.get('/feature-collections', validateCoords, async (req, res) => {
-    // TODO: Filter by collections that are nearest coordinates
     let json
     try {
-      const featureCollections = await FeatureCollection.find()
+      const { lng, lat } = req.query
+      const featureCollections = await FeatureCollection
+        .find({
+          'geometry.coordinates': {
+            $near: [ lng, lat ],
+            // 5 km
+            $maxDistance: 0.05
+          }
+        })
+
       json = buildSuccess(200, featureCollections)
       res.status(200)
     } catch (e) {

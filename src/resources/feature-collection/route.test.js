@@ -10,31 +10,51 @@ const clear = async () => {
   await FeatureCollectionType.remove({})
 }
 
-const createSingle = async () => {
-  const type = await FeatureCollectionType.create({ name: 'UPA' })
-  const collection = await FeatureCollection.create({
-    type: type.get('id'),
-    geometry: {
-      type: 'Point',
-      coordinates: [ -61.999823896294, -11.935540304765 ]
-    }
-  })
-  return collection
-}
+const validLat = -9.66451
+const validLng = -35.69613
+// +- 5500 meters awayt validLat and validLng
+const pointOut = [ -35.73510, -9.63303 ]
+// +- 2153 meters near validLat and validLng
+const pointInTwo = [ -35.71201, -9.65266 ]
+// +- 1656 meters near validLat and validLng
+const pointInOne = [ -35.70806, -9.65537 ]
 
-const validLat = -9.6460599
-const validLng = -35.726711
+const fixtureCollection = async () => {
+  const type = await FeatureCollectionType.create({ name: 'UPA' })
+  await FeatureCollection.create(
+    {
+      type: type.get('id'),
+      geometry: {
+        type: 'Point',
+        coordinates: pointInTwo
+      }
+    },
+    {
+      type: type.get('id'),
+      geometry: {
+        type: 'Point',
+        coordinates: pointInOne
+      }
+    },
+    {
+      type: type.get('id'),
+      geometry: {
+        type: 'Point',
+        coordinates: pointOut
+      }
+    }
+  )
+}
 
 describe('Acceptance: feature-collection', function () {
   describe('GET /feature-collections', function () {
     describe('status 200', function () {
       let db
-      let created
 
       before(async function () {
         db = await connect(process.env.MONGO_URI)
         await clear()
-        created = await createSingle()
+        await fixtureCollection()
       })
 
       after(async function () {
@@ -42,7 +62,7 @@ describe('Acceptance: feature-collection', function () {
         await db.disconnect()
       })
 
-      it('should return json with feature collections', async function () {
+      it('should return json with feature collections nearest point', async function () {
         const response = await request
           .get(url)
           .query({ lat: validLat, lng: validLng })
@@ -50,8 +70,9 @@ describe('Acceptance: feature-collection', function () {
           .expect('Content-Type', /json/)
 
         const { data } = response.body
-        expect(data).to.be.an('array').that.have.lengthOf(1)
-        expect(data[0]._id).to.equal(created.get('id'))
+        expect(data).to.be.an('array').that.have.lengthOf(2)
+        expect(data[0].geometry.coordinates).to.deep.equal(pointInOne)
+        expect(data[1].geometry.coordinates).to.deep.equal(pointInTwo)
       })
     })
 
