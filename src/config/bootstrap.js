@@ -1,16 +1,20 @@
 'use strict'
 
+const app = require('./app')
+const server = require('./server')
 const database = require('../database')
 
 /**
  * Starts application.
- * @param {Server} server
  */
-function bootstrap (server) {
-  server.listen(process.env.SERVER_PORT, async () => {
-    await database.connect(process.env.MONGO_URI)
-    console.log('saudify-api running')
+async function start () {
+  const appServer = await server.create(app)
+  return new Promise(resolve => {
+    appServer.listen(process.env.SERVER_PORT, async () => {
+      await database.connect(process.env.MONGO_URI)
+      resolve(appServer)
+    })
   })
 }
 
-module.exports = bootstrap
+module.exports = { start }

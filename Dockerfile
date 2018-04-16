@@ -10,6 +10,3 @@ RUN npm install
 
 # copy app source
 COPY . .
-
-# Create certs
-RUN npm run ssl
