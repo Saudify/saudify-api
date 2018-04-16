@@ -11,9 +11,9 @@ describe('Unit: config/server', function () {
       server.close(() => done())
     })
 
-    it('should return Server instance', function () {
+    it('should return Server instance', async function () {
       const app = () => {}
-      server = serverModule.create(app)
+      server = await serverModule.create(app)
       expect(server).to.be.instanceOf(https.Server)
     })
   })

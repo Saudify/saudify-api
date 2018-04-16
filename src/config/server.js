@@ -1,23 +1,29 @@
 'use strict'
 
 const https = require('https')
-const { resolve } = require('path')
-const { readFileSync } = require('fs')
-const { CERTS_PATH } = require('./constants')
-
-// TODO: Refactor to use https://www.npmjs.com/package/pem
-const options = {
-  key: readFileSync(resolve(CERTS_PATH, 'saudify.key')),
-  cert: readFileSync(resolve(CERTS_PATH, 'saudify.cert'))
-}
+const pem = require('pem')
 
 /**
  * Starts application server.
  * @param {Object} app Server request handler.
- * @returns {Server}
+ * @returns {Promise<Server>}
  */
 function create (app) {
-  return https.createServer(options, app)
+  return new Promise((resolve, reject) => {
+    pem.createCertificate({ days: 365, selfSigned: true }, function (err, keys) {
+      if (err) {
+        return reject(err)
+      }
+
+      const options = {
+        key: keys.serviceKey,
+        cert: keys.certificate
+      }
+
+      const server = https.createServer(options, app)
+      resolve(server)
+    })
+  })
 }
 
 module.exports = { create }

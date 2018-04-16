@@ -6,11 +6,10 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "npm run import:dev && nodemon src/index.js",
-    "test": "npm run ssl && npm run lint:fix && find ./src -name '*.test.js' | xargs mocha --exit --opts tests/mocha.opts",
+    "test": "npm run lint:fix && find ./src -name '*.test.js' | xargs mocha --exit --opts tests/mocha.opts",
     "test:file": "mocha --exit --opts tests/mocha.opts",
     "lint": "eslint src/*",
     "lint:fix": "eslint --fix src/*",
-    "ssl": "./scripts/generate.sh",
     "import:dev": "node ./scripts/setup-dev.js"
   },
   "repository": {
@@ -48,6 +47,7 @@
     "hsts": "^2.1.0",
     "ienoopen": "^1.0.0",
     "mongoose": "^5.0.3",
+    "pem": "^1.12.5",
     "x-xss-protection": "^1.1.0"
   }
 }
