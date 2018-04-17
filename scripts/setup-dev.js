@@ -16,7 +16,8 @@ async function setup () {
   await connect(process.env.MONGO_URI)
   await clear()
 
-  const featureType = await FeatureCollectionType.create({ name: 'UPA' })
+  // type --> http://dados.gov.br/dataset/upa_pac_func
+  const featureType = await FeatureCollectionType.create({ name: 'UPA PAC 2' })
   const featuresCollections = upaJson.features.map(feature => ({
     type: featureType.get('id'),
     geometry: feature.geometry

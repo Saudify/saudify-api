@@ -12,11 +12,11 @@ const clear = async () => {
 
 const validLat = -9.66451
 const validLng = -35.69613
-// +- 5500 meters awayt validLat and validLng
-const pointOut = [ -35.73510, -9.63303 ]
-// +- 2153 meters near validLat and validLng
+// +- 15.25 km awayt validLat and validLng
+const pointOut = [ -35.78203, -9.55659 ]
+// +- 2.15 km near validLat and validLng
 const pointInTwo = [ -35.71201, -9.65266 ]
-// +- 1656 meters near validLat and validLng
+// +- 1.65 km near validLat and validLng
 const pointInOne = [ -35.70806, -9.65537 ]
 
 const fixtureCollection = async () => {
@@ -82,10 +82,9 @@ describe('Acceptance: feature-collection', function () {
       let stub
 
       before(function () {
-        const p = Promise.reject(err)
-        p.catch(() => {})
+        const findReturn = { populate: () => Promise.reject(err) }
         stub = sinon.stub(FeatureCollection, 'find')
-        stub.returns(p)
+        stub.returns(findReturn)
       })
 
       after(function () {

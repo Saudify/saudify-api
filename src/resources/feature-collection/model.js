@@ -10,13 +10,13 @@ const featureCollection = new mongoose.Schema({
     required: true
   },
   geometry: {
+    // TODO: ajust geospatial
     type: {
       type: String,
       required: true,
       default: 'Point'
     },
     coordinates: {
-      // [0] - longitude, [1] - latitude
       type: [Number],
       index: '2d',
       required: true,
