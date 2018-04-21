@@ -4,6 +4,7 @@ const express = require('express')
 const app = express()
 const router = express.Router()
 const notFoundMiddleware = require('../lib/http/middlewares/not-found')
+const errorMiddleware = require('../lib/http/middlewares/error')
 
 // application routes
 const appRoutes = require('../lib/http/routes')
@@ -33,5 +34,6 @@ appRoutes(router)
  */
 
 app.use(notFoundMiddleware)
+app.use(errorMiddleware)
 
 module.exports = app
