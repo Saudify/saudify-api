@@ -4,7 +4,7 @@ services:
   # TODO: multi enviroments
   saudify-api:
     build: .
-    command: npm run dev
+    command: node src/index.js
     volumes:
       - .:/usr/src/saudify
       - /usr/src/saudify/node_modules
