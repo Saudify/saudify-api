@@ -1,7 +1,19 @@
 version: '2.1'
 
 services:
-  # TODO: multi enviroments
+  test:
+    build: .
+    entrypoint: npm test
+    volumes:
+      - .:/usr/src/saudify
+      - /usr/src/saudify/node_modules
+    environment:
+      MONGO_URI: mongodb://mongo/saudify
+      SERVER_PORT: 3000
+    depends_on:
+      mongo:
+        condition: service_started
+
   saudify-api:
     build: .
     command: node src/index.js
@@ -18,6 +30,7 @@ services:
         condition: service_started
     links:
       - mongo
+
   mongo:
     image: mongo
     ports:

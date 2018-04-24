@@ -1,9 +1,9 @@
 run-api:
-	@docker-compose up
+	@docker-compose up saudify-api
 .PHONY: run-api
 
 test:
-	@docker-compose run saudify-api npm test
+	@docker-compose run test
 .PHONY: test
 
 teardown:
