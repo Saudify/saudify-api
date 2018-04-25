@@ -11,19 +11,59 @@
 
 ### Running server
 
-1. **Build the base images:**
-  ```sh
-  $ sudo docker-compose build
-  ```
-
-2. **Start server**
-  ```sh
-  $ sudo docker-compose up
-  ```
-
-### Running tests
-
-**Run all tests**
+- **Build image:**
 ```sh
-$ sudo docker-compose run saudify-api npm test
+$ sudo docker-compose build saudify-api
+
+# or using make
+
+$ sudo make build-api
+```
+
+- **Import static data on development** (Optional)
+```sh
+$ sudo docker-compose run saudify-api npm run import:dev
+
+# or using make
+
+$ sudo make import-static-contrib
+```
+
+- **Start API**
+```sh
+$ sudo docker-compose up saudify-api
+
+# or using make
+
+$ sudo make run-api
+```
+
+### Tests
+
+- **Build image**
+```sh
+$ sudo docker-compose build test
+
+# or using make
+
+$ sudo make build-test
+```
+
+- **Run all tests**
+```sh
+$ sudo docker-compose run test
+
+# or using make
+
+$ sudo make test
+```
+
+### Stopping and clear all containers
+
+```sh
+$ sudo docker-compose down -v --rmi local
+
+# or using make
+
+$ sudo make teardown
 ```
