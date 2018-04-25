@@ -76,32 +76,6 @@ describe('Acceptance: feature-collection', function () {
       })
     })
 
-    describe('status 500', function () {
-      const errMsg = 'foo'
-      const err = new Error(errMsg)
-      let stub
-
-      before(function () {
-        const findReturn = { populate: () => Promise.reject(err) }
-        stub = sinon.stub(FeatureCollection, 'find')
-        stub.returns(findReturn)
-      })
-
-      after(function () {
-        stub.restore()
-      })
-
-      it('should return json with 500 error', async function () {
-        const response = await request
-          .get(url)
-          .query({ lat: validLat, lng: validLng })
-          .expect(500)
-          .expect('Content-Type', /json/)
-
-        expect(response.body.message).to.equal(errMsg)
-      })
-    })
-
     describe('status 400', function () {
       describe('coordinates querystring', function () {
         it('should return json with status 400 when lat is not defined', async function () {

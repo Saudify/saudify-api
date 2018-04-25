@@ -5,52 +5,19 @@ const FeatureCollectionType = require('../feature-collection-type/model')
 const url = '/v1/feature-collection-types'
 
 describe('Acceptance: feature-collection-type', function () {
-  let conn
-
-  before(async function () {
-    conn = await connect(process.env.MONGO_URI)
-  })
-
-  after(async function () {
-    await conn.disconnect()
-  })
-
   describe('GET /feature-collection-types', function () {
-    describe('status 500', function () {
-      const errMsg = 'foo'
-      const err = new Error(errMsg)
-      let stub
-
-      before(async function () {
-        const p = Promise.reject(err)
-        p.catch(() => {})
-
-        stub = sinon.stub(FeatureCollectionType, 'find')
-        stub.returns(p)
-      })
-
-      after(function () {
-        stub.restore()
-      })
-
-      it('should return json with error', async function () {
-        const response = await request
-          .get(url)
-          .expect(500)
-          .expect('Content-Type', /json/)
-
-        expect(response.body.message).to.equal(errMsg)
-      })
-    })
-
     describe('status 200', function () {
+      let conn
+
       before(async function () {
+        conn = await connect(process.env.MONGO_URI)
         await FeatureCollectionType.remove({})
         await FeatureCollectionType.create({ name: 'UPA' }, { name: 'UBS' })
       })
 
       after(async function () {
         await FeatureCollectionType.remove({})
+        await conn.disconnect()
       })
 
       it('should return json with feature collection types', async function () {

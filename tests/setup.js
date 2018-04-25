@@ -5,14 +5,16 @@
 
 'use strict'
 
+// avoid self signed certificate error
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+
 const sinon = require('sinon')
 const sinonChai = require('sinon-chai')
 const chai = require('chai')
-const supertest = require('supertest')
-const app = require('../src/config/app')
+const request = require('./helpers/request')
 
 chai.use(sinonChai)
 
-global.request = supertest(app)
+global.request = request()
 global.expect = chai.expect
 global.sinon = sinon
