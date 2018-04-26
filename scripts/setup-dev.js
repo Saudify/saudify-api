@@ -23,7 +23,7 @@ async function setup () {
     geometry: feature.geometry
   }))
 
-  await FeatureCollection.collection.insert(featuresCollections)
+  await FeatureCollection.create(featuresCollections)
 }
 
 async function clear () {

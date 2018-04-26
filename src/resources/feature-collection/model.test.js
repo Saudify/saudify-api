@@ -117,7 +117,6 @@ describe('Unit: resources/feature-collection', function () {
         })
         const error = await fCollection.validate()
         expect(error).to.be.undefined
-        expect(fCollection.geometry.type).to.equal('Point')
       })
     })
   })

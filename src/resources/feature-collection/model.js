@@ -10,7 +10,6 @@ const featureCollection = new mongoose.Schema({
     required: true
   },
   geometry: {
-    // TODO: ajust geospatial
     type: {
       type: String,
       required: true,
@@ -25,11 +24,9 @@ const featureCollection = new mongoose.Schema({
         message: 'Invalid coordinates: {VALUE}.'
       }
     }
-  },
-  importedAt: {
-    type: Date,
-    default: Date.now
   }
+}, {
+  timestamps: true
 })
 
 module.exports = mongoose.model('FeatureCollection', featureCollection)
