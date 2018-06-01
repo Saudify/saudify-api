@@ -5,9 +5,6 @@
 
 'use strict'
 
-// avoid self signed certificate error
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
-
 const sinon = require('sinon')
 const chai = require('chai')
 const sinonChai = require('sinon-chai')

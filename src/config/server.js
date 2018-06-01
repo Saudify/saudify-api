@@ -1,7 +1,6 @@
 'use strict'
 
-const https = require('https')
-const pem = require('pem')
+const { createServer } = require('http')
 
 /**
  * Starts application server.
@@ -10,19 +9,8 @@ const pem = require('pem')
  */
 function create (app) {
   return new Promise((resolve, reject) => {
-    pem.createCertificate({ days: 365, selfSigned: true }, function (err, keys) {
-      if (err) {
-        return reject(err)
-      }
-
-      const options = {
-        key: keys.serviceKey,
-        cert: keys.certificate
-      }
-
-      const server = https.createServer(options, app)
-      resolve(server)
-    })
+    const server = createServer(app)
+    return resolve(server)
   })
 }
 

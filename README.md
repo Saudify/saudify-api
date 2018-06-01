@@ -11,7 +11,7 @@
 
 ### Running server
 
-- **Build image:**
+**Build image:**
 ```sh
 $ sudo docker-compose build saudify-api
 
@@ -20,7 +20,7 @@ $ sudo docker-compose build saudify-api
 $ sudo make build-api
 ```
 
-- **Import static data on development** (Optional)
+**Import static data on development** (Optional)
 ```sh
 $ sudo docker-compose run saudify-api npm run import:dev
 
@@ -29,12 +29,12 @@ $ sudo docker-compose run saudify-api npm run import:dev
 $ sudo make import-static-contrib
 ```
 
-- **Start API**
+**Start API**
+
 ```sh
+# This command will run server with https.
 $ sudo docker-compose up saudify-api
-
 # or using make
-
 $ sudo make run-api
 ```
 

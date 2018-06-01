@@ -1,6 +1,6 @@
 'use strict'
 
-const https = require('https')
+const { Server } = require('http')
 const serverModule = require('./server')
 
 describe('Unit: config/server', function () {
@@ -14,7 +14,7 @@ describe('Unit: config/server', function () {
     it('should return Server instance', async function () {
       const app = () => {}
       server = await serverModule.create(app)
-      expect(server).to.be.instanceOf(https.Server)
+      expect(server).to.be.instanceOf(Server)
     })
   })
 })
