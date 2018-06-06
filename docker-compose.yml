@@ -11,8 +11,7 @@ services:
       MONGO_URI: mongodb://mongo/saudify
       SERVER_PORT: 3000
     depends_on:
-      saudify-api:
-        condition: service_started
+      - api-dependencies
 
   saudify-api:
     build: .
@@ -26,10 +25,15 @@ services:
       MONGO_URI: mongodb://mongo/saudify
       SERVER_PORT: 3000
     depends_on:
-      mongo:
-        condition: service_started
+      - api-dependencies
     links:
       - mongo
+
+  api-dependencies:
+    image: busybox
+    depends_on:
+      mongo:
+        condition: service_started
 
   mongo:
     image: mongo
