@@ -17,7 +17,7 @@ const featureCollection = new mongoose.Schema({
     },
     coordinates: {
       type: [Number],
-      index: '2d',
+      index: '2dsphere',
       required: true,
       validate: {
         validator: isValidCoords,

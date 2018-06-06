@@ -71,13 +71,11 @@ describe('Acceptance: feature-collection', function () {
 
         const { data } = response.body
         expect(data).to.be.an('array').that.have.lengthOf(2)
-
         expect(data[0].type.name).to.equal('UPA')
         expect(data[0].createdAt).to.be.a.dateString()
         expect(data[0].updatedAt).to.be.a.dateString()
         expect(data[0].geometry.type).to.deep.equal('Point')
         expect(data[0].geometry.coordinates).to.deep.equal(pointInOne)
-
         expect(data[1].geometry.coordinates).to.deep.equal(pointInTwo)
       })
     })

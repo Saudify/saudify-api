@@ -11,15 +11,13 @@ module.exports = router => {
     .all(validateCoords)
     .get(wrapper(async (req, res) => {
       const { lng, lat } = req.query
-      const findConds = {
-        'geometry.coordinates': {
-          $near: [lng, lat],
-          // 12 km
-          $maxDistance: 0.12
-        }
-      }
       const featureCollections = await FeatureCollection
-        .find(findConds)
+        .where('geometry.coordinates')
+        .near({
+          center: [ lng, lat ],
+          maxDistance: 0.0012,
+          spherical: true
+        })
         .populate('type')
 
       const json = buildSuccess(200, featureCollections)
